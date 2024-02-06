@@ -1,0 +1,201 @@
+﻿//1- Switch case ile müşteriden alınan sipariş numarasına göre hangi ürünün sipariş edildiğini belirleyen algoritma yazınız.
+
+Console.Write("Sipariş Numarası Giriniz:");
+int siparisNumarasi = int.Parse(Console.ReadLine());
+string siparisDetayi;
+
+switch (siparisNumarasi)
+{
+    case 1:
+        siparisDetayi = "PC";
+        break;
+    case 2:
+        siparisDetayi = "tablet";
+        break;
+    case 3:
+        siparisDetayi = "phone";
+        break;
+    case 4:
+        siparisDetayi = "tvRemote";
+        break;
+    case 5:
+        siparisDetayi = "ps5pro";
+        break;
+    default:
+        siparisDetayi = "bulunamayan sipariş";
+        break;
+}
+
+Console.WriteLine("Sipariş numarası: {siparisNumarasi}, siparisDetayi: {siparisDetayi}");
+
+//2- kullanıcıdan kaç ürün almak istediğini soran,her ürünün fiyatını alarak toplam alışveriş tutarını hesaplayan bir algoritma yazınız.(döngü için for döngüsü kullanınız)
+
+
+double totalPrice = 0;
+Console.WriteLine("Kaç Ürün Almak İstiyorsunuz?");
+int urunSayisi = int.Parse(Console.ReadLine());
+
+for (int i = 0; i < urunSayisi; i++)
+{
+    Console.Write($"{i + 1}. ürünün fiyatı: ");
+    double price = double.Parse(Console.ReadLine());
+    totalPrice += price;
+}
+
+Console.WriteLine("Toplam Alışveriş Tutarınız: " + totalPrice);
+
+
+
+//3-Do - While ve While döngüsü nedir? Bununla ilgili örnek yapınız.
+
+Console.WriteLine("Do-while döngüsü tekrar eden bir kod bloğunu belirli bir koşul sağlandığı sürece çalıştırmak için kullanılan kontrol yapılarıdır...")
+
+        //Do-while Döngüsü Örnek:
+        int i = 0;
+do
+{
+    Console.WriteLine(i);
+    i++;
+} while (i < 5);
+
+//While Döngüsü Örnek:
+int sayac = 0;
+while (sayac < 5)
+{
+    Console.WriteLine(sayac);
+    i++;
+}
+
+//Bu iki döngü türü arasındaki ana fark, do-while döngüsünün koşulu döngü bloğunun sonunda kontrol etmesidir. Bu nedenle, do-while döngüsü en az bir kez çalıştırılırken, while döngüsü belirli bir koşulun doğru olup olmadığını kontrol ederek çalışır.
+
+
+
+//4-Bir sayının mükemmel sayı olup olmadığı kontrol eden algoritma yazınız.
+
+Console.Write(" Sayınızı Giriniz : ");
+int sayi = int.Parse(Console.ReadLine());
+if (MukemmelSayiMi(sayi))
+{
+    Console.WriteLine(sayi + "Mükemmel Bir Sayıdır...");
+}
+else
+{
+    Console.WriteLine(sayi + "Mükemmel Bir Sayı Değildir.");
+}
+static bool MukemmelSayiMi(int sayi)
+{
+    int toplam = 0;
+    for (int i = 1; i < sayi; i++)
+    {
+        if (sayi % i == 0)
+        {
+            toplam += i;
+        }
+    }
+    return toplam == sayi;
+}
+
+//5-String metotlarını araştırınız. Her bir metot için örnek yapınız.
+
+//1-Length: Bir stringin karakter sayısını döndürür.
+string str = "Merhaba";
+int length = str.Length; // length değişkeni 7 değerini alır
+
+//2-ToUpper: Bir stringin tüm karakterlerini büyük harfe dönüştürür.
+string str1 = "merhaba";
+string buyukHarfli = str.ToUpper(); // buyukHarfli değişkeni "MERHABA" değerini alır
+
+//3-ToLower: Bir stringin tüm karakterlerini küçük harfe dönüştürür.
+string str2 = "MERHABA";
+string kucukHarfli = str.ToLower(); // kucukHarfli değişkeni "merhaba" değerini alır
+
+//4-Substring: Bir stringin belirtilen bir alt dizisini döndürür.
+string str3 = "Merhaba Dünya";
+string altDizi = str.Substring(8); // altDizi değişkeni "Dünya" değerini alır
+
+//5-Contains: Bir stringin belirli bir alt diziyi içerip içermediğini kontrol eder.
+string str = "Merhaba Dünya";
+bool icerirMi = str.Contains("Dünya"); // icerirMi değişkeni true değerini alır
+
+//6-IndexOf: Bir string içinde belirli bir alt dizinin ilk indeksini döndürür.
+string str = "Merhaba Dünya";
+int indeks = str.IndexOf("Dünya"); // indeks değişkeni 8 değerini alır
+
+//7-Replace: Bir string içinde belirli bir alt diziyi başka bir alt diziyle değiştirir.
+string str = "Merhaba Dünya";
+string yeniStr = str.Replace("Dünya", "Mars"); // yeniStr değişkeni "Merhaba Mars" değerini alır
+
+//8-Trim: Bir stringin başındaki ve sonundaki boşlukları kaldırır.
+string str = "   Merhaba    ";
+string trimmedStr = str.Trim(); // trimmedStr değişkeni "Merhaba" değerini alır
+
+//9-Split: Bir stringi belirtilen ayırıcıya göre parçalar ve bir diziye dönüştürür.
+string str = "Merhaba,Dünya,Nasılsınız";
+string[] parcalar = str.Split(','); // parcalar dizisi ["Merhaba", "Dünya", "Nasılsınız"] değerini alır
+
+
+//6- Bir mağazada alınan ürünün fiyatı 300 tl üzerinde ise 50 tl olan kargo ücreti alınmamaktadır. ürünün fiyatı girildiğinde toplam ödemesi gereken tutarı gösteren programı yazınız.
+
+
+Console.Write("Ürün fiyatını giriniz (TL): ");
+double urunFiyati = double.Parse(Console.ReadLine());
+
+double toplamOdeme;
+
+if (urunFiyati >= 300)
+{
+    // Ürün fiyatı 300 TL veya daha fazlaysa, kargo ücreti alınmaz
+    toplamOdeme = urunFiyati;
+}
+else
+{
+    // Ürün fiyatı 300 TL'den azsa, kargo ücreti (50 TL) de eklenir
+    toplamOdeme = urunFiyati + 50;
+}
+
+Console.WriteLine("Toplam ödemeniz gereken tutar: " + toplamOdeme + "TL");
+
+
+//7-iki ürünün kullanıcı tarafından fiyatı girildiğinde toplam fiyat 500 tl'den fazla ise 2.üründen %40 indirim yaparak ödenecek tutarı gösteren uygulamayı yazınız.
+
+
+
+Console.Write("1. ürün fiyatını giriniz (TL): ");
+double urunFiyati1 = double.Parse(Console.ReadLine());
+
+Console.Write("2. ürün fiyatını giriniz (TL): ");
+double urunFiyati2 = double.Parse(Console.ReadLine());
+
+double toplamFiyat = urunFiyati1 + urunFiyati2;
+double odenecekTutar;
+
+if (toplamFiyat > 500)
+{
+    // Toplam fiyat 500 TL'den fazlaysa, ikinci üründen %40 indirim yapılır
+    double indirimMiktari = urunFiyati2 * 0.40;
+    odenecekTutar = toplamFiyat - indirimMiktari;
+}
+else
+{
+    // Toplam fiyat 500 TL veya daha azsa, indirim yapılmaz
+    odenecekTutar = toplamFiyat;
+}
+
+Console.WriteLine("Ödenecek tutar: " + odenecekTutar + "TL");
+
+//8- 1-200 arası içinde 3'e veya 5'e tam bölünebilen sayıları listeleyen ve kaç adet olduğunu yazdıran programı yazınız.
+
+int adet = 0;
+
+Console.WriteLine("1 ile 200 arasında 3'e veya 5'e tam bölünebilen sayılar:");
+for (int i = 1; i <= 200; i++)
+{
+    if (i % 3 == 0 || i % 5 == 0)
+    {
+        Console.WriteLine(i);
+        adet++;
+    }
+}
+
+Console.WriteLine("Toplamda {adet} adet sayı bulunmaktadır.");
+    
